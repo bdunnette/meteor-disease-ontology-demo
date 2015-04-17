@@ -1,3 +1,0 @@
-[submodule "packages/bdunnette:disease-ontology"]
-	path = packages/bdunnette:disease-ontology
-	url = git@github.com:bdunnette/meteor-disease-ontology.git
