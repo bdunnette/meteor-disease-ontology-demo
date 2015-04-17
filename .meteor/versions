@@ -2,11 +2,14 @@ alethes:pages@1.8.4
 autopublish@1.0.3
 autoupdate@1.2.1
 base64@1.0.3
+bdunnette:disease-ontology@1.0.0
 binary-heap@1.0.3
 blaze@2.1.2
 blaze-tools@1.0.3
 boilerplate-generator@1.0.3
 callback-hook@1.0.3
+cfs:http-methods@0.0.28
+cfs:http-publish@0.0.13
 check@1.0.5
 coffeescript@1.0.6
 ddp@1.1.0
@@ -45,6 +48,7 @@ session@1.1.0
 spacebars@1.0.6
 spacebars-compiler@1.0.6
 templating@1.1.1
+tinytest@1.0.5
 tracker@1.0.7
 twbs:bootstrap@3.3.4
 ui@1.0.6
@@ -52,3 +56,4 @@ underscore@1.0.3
 url@1.0.4
 webapp@1.2.0
 webapp-hashing@1.0.3
+wizonesolutions:underscore-string@1.0.0

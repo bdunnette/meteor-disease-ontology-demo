@@ -10,3 +10,7 @@ insecure
 twbs:bootstrap
 alethes:pages
 matteodem:easy-search
+tinytest
+http
+bdunnette:disease-ontology
+cfs:http-publish
