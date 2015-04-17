@@ -1,0 +1,3 @@
+[submodule "meteor-disease-ontology"]
+	path = meteor-disease-ontology
+	url = git@github.com:bdunnette/meteor-disease-ontology.git
