@@ -6,9 +6,6 @@ Pages = new Meteor.Pagination(Diseases, {
 });
 
 if (Meteor.isClient) {
-  // counter starts at 0
-  Session.setDefault('counter', 0);
-
   Template.diseases.helpers({
 
   });
@@ -19,17 +16,30 @@ if (Meteor.isClient) {
 }
 
 if (Meteor.isServer) {
+  Meteor.methods({
+    updateDiseases: function() {
+      var diseasesToUpdate = Diseases.find({xrefs: {$exists: false}});
+      console.log(diseasesToUpdate.count() + ' diseases to update');
+      diseasesToUpdate.forEach(function(disease) {
+        var updateCommand = 'Meteor.call("getDisease", "' + disease.id + '");';
+        Queue.add({
+          command: updateCommand
+        });
+      });
+      return diseasesToUpdate.count();
+    }
+  });
   Meteor.startup(function () {
     var diseaseCount = Diseases.find().count();
     var diseasesToUpdate = Diseases.find({xrefs: {$exists: false}}).count();
     console.log(diseaseCount + ' diseases in database, ' + diseasesToUpdate + ' with incomplete data');
     if (diseaseCount === 0) {
-      var importDiseases = Meteor.call('getDisease', 'DOID:4');
+      Queue.add({
+        command: 'Meteor.call("getDisease", "DOID:4");'
+      });
     }
-    var diseasesUpdated = Meteor.call('updateDiseases');
-    setInterval(function() {
-      console.log(Diseases.find({xrefs: {$exists: false}}).count() + ' diseases to update');
-      var diseasesUpdated = Meteor.call('updateDiseases');
-    }, 1800000);
+    Queue.add({command:'Meteor.call("updateDiseases");'});
+    Queue.setInterval('updateDiseases', 'Meteor.call("updateDiseases");', 600000);
+    Queue.run();
   });
 }
