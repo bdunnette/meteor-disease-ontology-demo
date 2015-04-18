@@ -1,7 +1,7 @@
 Pages = new Meteor.Pagination(Diseases, {
   perPage: 10,
   sort: {
-    id: 1
+    name: 1
   }
 });
 
@@ -20,6 +20,16 @@ if (Meteor.isClient) {
 
 if (Meteor.isServer) {
   Meteor.startup(function () {
-    // code to run on server at startup
+    var diseaseCount = Diseases.find().count();
+    var diseasesToUpdate = Diseases.find({xrefs: {$exists: false}}).count();
+    console.log(diseaseCount + ' diseases in database, ' + diseasesToUpdate + ' with incomplete data');
+    if (diseaseCount === 0) {
+      var importDiseases = Meteor.call('getDisease', 'DOID:4');
+    }
+    var diseasesUpdated = Meteor.call('updateDiseases');
+    setInterval(function() {
+      console.log(Diseases.find({xrefs: {$exists: false}}).count() + ' diseases to update');
+      var diseasesUpdated = Meteor.call('updateDiseases');
+    }, 1800000);
   });
 }
