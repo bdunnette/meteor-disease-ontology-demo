@@ -1,4 +1,9 @@
-Pages = new Meteor.Pagination(Diseases);
+Pages = new Meteor.Pagination(Diseases, {
+  perPage: 10,
+  sort: {
+    id: 1
+  }
+});
 
 if (Meteor.isClient) {
   // counter starts at 0
