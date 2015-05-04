@@ -1,0 +1,13 @@
+<template name="DiseaseTemplate">
+  <div class="diseaseItem row">
+    <h4>{{name}}</h4>
+    <p>{{defText}}</p>
+    {{#if defLinks}}
+      <ul>
+        {{#each defLinks}}
+          <li><a href="{{this}}" target="_blank">{{this}}</a></li>
+        {{/each}}
+      </ul>
+    {{/if}}
+  </div>
+</template>
