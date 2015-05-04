@@ -1,6 +1,7 @@
 <template name="DiseaseTemplate">
   <div class="diseaseItem row">
     <h4>{{name}}</h4>
+    {{#if aka}}<h5>AKA: {{aka}}</h5>{{/if}}
     <p>{{defText}}</p>
     {{#if defLinks}}
       <ul>

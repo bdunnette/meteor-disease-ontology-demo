@@ -25,6 +25,22 @@ Template.DiseaseTemplate.helpers({
       })
       return defLinks;
     }
+  },
+
+  aka: function() {
+    if (this.synonym) {
+      if (Array.isArray(this.synonym)) {
+      var synonyms = [];
+      this.synonym.forEach(function(syn){
+        var synText = syn.match(/"(.*?)"/)[1].replace('"','');
+        synonyms.push(synText);
+      });
+      return synonyms;
+    } else {
+      var synText = this.synonym.match(/"(.*?)"/)[1].replace('"','');
+      return synText;
+    }
+    }
   }
 });
 
