@@ -57,7 +57,7 @@ if (Meteor.isServer) {
     var diseaseCount = Diseases.find().count();
     console.log(diseaseCount + ' diseases in database');
     Queue.add({command: 'Meteor.call("updateDiseases");'});
-    Queue.setInterval('updateDiseases', 'Meteor.call("updateDiseases");', 300000);
+    Queue.setInterval('updateDiseases', 'Meteor.call("updateDiseases");', 3600000);
     Queue.run();
   });
 }
